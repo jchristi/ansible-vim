@@ -39,7 +39,7 @@ highlight link jinjaVarDelim Delimiter
 
 " Reset some YAML to plain styling
 " the number 80 in Ansible isn't any more important than the word root
-highlight link yamlInteger NONE
+"highlight link yamlInteger NONE
 highlight link yamlBool NONE
 highlight link yamlFlowString NONE
 " but it does make sense we visualize quotes easily
@@ -83,10 +83,25 @@ if exists("g:ansible_extra_keywords_highlight")
   highlight link ansible_extra_special_keywords Statement
 endif
 
+syn keyword ansible_boolean_values yes no Yes No true false True False containedin=yamlPlainScalar contained
+highlight link ansible_boolean_values Statement
+
+syn keyword ansible_state_values present absent installed latest directory file link touch hard containedin=yamlPlainScalar contained
+highlight link ansible_state_values Statement
+
+
 syn keyword ansible_special_keywords include until retries delay when only_if become become_user block rescue always notify containedin=yamlBlockMappingKey contained
 highlight link ansible_special_keywords Statement
 
 syn match ansible_with_keywords "\vwith_.+" containedin=yamlBlockMappingKey contained
 highlight link ansible_with_keywords Statement
+
+syn match ansible_operators "==" "!=" ">" "<" ">=" "<=" "is" "is not" containedin=yamlPlainScalar contained
+highlight link ansible_operators Operator
+
+syn region ansibleString start='"' end='"' skip='\\"' display contains=jinjaVarBlock
+highlight link ansibleString String
+
+highlight link jinjaVariable PreProc
 
 let b:current_syntax = "ansible"
