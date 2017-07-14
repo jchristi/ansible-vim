@@ -25,11 +25,20 @@ Use your favorite plugin manager, or try [vim-plug](https://github.com/junegunn/
 
 **vim-plug:** `Plug 'pearofducks/ansible-vim'`
 
+**vim-plug with post-update hook:** `Plug 'pearofducks/ansible-vim', { 'do':
+'./UltiSnips/generate.py' }`
+
 **vundle:** `Plugin 'pearofducks/ansible-vim'`
 
 **pathogen:** `git clone https://github.com/pearofducks/ansible-vim ~/.vim/bundle/ansible-vim`
 
 ## options
+
+##### g:ansible_unindent_after_newline
+
+`let g:ansible_unindent_after_newline = 1`
+
+When this variable is set, indentation will completely reset (unindent to column 0) after two newlines in insert-mode. The normal behavior of YAML is to always keep the previous indentation, even across multiple newlines with no content.
 
 ##### g:ansible_extra_syntaxes
 `let g:ansible_extra_syntaxes = "sh.vim ruby.vim"`
